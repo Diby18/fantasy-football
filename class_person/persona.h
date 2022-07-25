@@ -6,14 +6,14 @@
 class Persona
 {
     protected:
-        unsigned short id, crediti;    
         std::string nome;
+        unsigned short crediti;    
         
         virtual std::ostream& getInfo(std::ostream&) const;
     
     public:
         Persona();
-        Persona(const unsigned short, const std::string, const unsigned short);
+        Persona(const std::string, const unsigned short);
 };
 
 
