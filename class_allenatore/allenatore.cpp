@@ -10,6 +10,8 @@ void Allenatore::operazione(const Persona &giocatore)
     this->listaGiocatori.push_front(giocatore);
 
     squadra<<(std::string) giocatore<<"\n";
+
+    this->crediti -= giocatore.getCrediti();
 }
 
 std::ostream& Allenatore::getInfo(std::ostream &os) const
