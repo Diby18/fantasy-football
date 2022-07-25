@@ -18,3 +18,5 @@ Persona::operator std::string() const
 {
     return this->nome + std::to_string(this->crediti);
 }
+
+unsigned short Persona::getCrediti() const { return this->crediti; }
