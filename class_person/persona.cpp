@@ -1,5 +1,7 @@
 #include "persona.h"
 
+Persona::Persona() { }
+
 Persona::Persona(const unsigned short id, const std::string nome, const unsigned short crediti)
 {
     this->id = id;

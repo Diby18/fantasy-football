@@ -12,6 +12,7 @@ class Persona
         virtual std::ostream& getInfo(std::ostream&) const;
     
     public:
+        Persona();
         Persona(const unsigned short, const std::string, const unsigned short);
 };
 
