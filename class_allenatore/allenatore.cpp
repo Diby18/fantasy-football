@@ -5,11 +5,11 @@ Allenatore::Allenatore(const std::string nome, const unsigned short crediti): Pe
 
 void Allenatore::operazione(const Persona &giocatore)
 {
-    std::ofstream squadra(this->nome + ".txt");
+    std::ofstream squadra(this->nome + ".txt",std::ios::app);
 
     this->listaGiocatori.push_front(giocatore);
 
-    squadra<<(std::string) giocatore<<"\n";
+    squadra<<(std::string) giocatore<<std::endl;
 
     this->crediti -= giocatore.getCrediti(); 
 }
