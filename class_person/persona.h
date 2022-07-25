@@ -9,12 +9,12 @@ class Persona
         std::string nome;
         unsigned short crediti;    
         
-        virtual std::ostream& getInfo(std::ostream&) const;
-    
     public:
         Persona();
         Persona(const std::string, const unsigned short);
         operator std::string() const;
+        virtual std::ostream& getInfo(std::ostream&) const;
+    
 };
 
 

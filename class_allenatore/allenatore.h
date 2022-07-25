@@ -6,14 +6,12 @@
 
 class Allenatore: public Persona
 {
-    std::list<Persona*> listaGiocatori; 
-
-    protected:
-        std::ostream& getInfo(std::ostream &) const;
+    std::list<Persona> listaGiocatori; 
 
     public:
         Allenatore(const std::string, const unsigned short);
-        void operazione(const Persona&);
+        void operazione(const Persona&); //acquisto di un giocatore
+        std::ostream& getInfo(std::ostream&) const;
 
         friend std::ostream& operator<<(std::ostream&, const Allenatore&);
 };
