@@ -14,6 +14,7 @@ class Persona
     public:
         Persona();
         Persona(const std::string, const unsigned short);
+        operator std::string() const;
 };
 
 
