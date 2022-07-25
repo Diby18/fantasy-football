@@ -11,12 +11,18 @@ void Allenatore::operazione(const Persona &giocatore)
 
     squadra<<(std::string) giocatore<<"\n";
 
-    this->crediti -= giocatore.getCrediti();
+    this->crediti -= giocatore.getCrediti(); 
 }
 
 std::ostream& Allenatore::getInfo(std::ostream &os) const
 {
+    system("cls");
+
+    os<<"Allenatore\n\n";
+
     Persona::getInfo(os);
+
+    os<<"Giocatori acquistati\n\n";
 
     for(auto giocatore : this->listaGiocatori) giocatore.getInfo(os);
 

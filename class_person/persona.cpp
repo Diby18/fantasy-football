@@ -11,7 +11,7 @@ Persona::Persona(const std::string nome, const unsigned short crediti)
 
 std::ostream& Persona::getInfo(std::ostream &os) const
 {
-    return os<<"Nome: "<<this->nome<<"\nCrediti: "<<this->crediti<<std::endl;
+    return os<<"\tNome: "<<this->nome<<"\n\tCrediti: "<<this->crediti<<std::endl<<std::endl;
 }
 
 Persona::operator std::string() const
