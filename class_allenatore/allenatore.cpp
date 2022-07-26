@@ -7,13 +7,15 @@ Allenatore::Allenatore(const std::string nome, const unsigned short crediti): Pe
 
 void Allenatore::operazione(const Persona *giocatore)
 {
-    std::ofstream squadra(this->nome + ".txt",std::ios::app);
+    std::ofstream squadra(this->nome + ".txt", std::ios::app);
 
     if(typeid(*giocatore) == typeid(Giocatore))
     {
         Giocatore *nuovo = (Giocatore*) giocatore;
 
         this->listaGiocatori.push_front(new Giocatore(*nuovo));
+
+        squadra<<(std::string) *nuovo<<std::endl; 
     }
 
     else { std::cerr<<"Inserimento non valido\n"; return; }
