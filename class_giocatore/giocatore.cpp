@@ -2,7 +2,8 @@
 
 Giocatore::Giocatore() { }
 
-Giocatore::Giocatore(const std::string nome, const unsigned short prezzo, const char ruolo): Persona(nome,prezzo) 
+Giocatore::Giocatore(const std::string nome, const unsigned short prezzo, const char ruolo)
+: Persona(nome,prezzo) 
 { 
     this->ruolo = ruolo;
 }
@@ -16,7 +17,8 @@ void Giocatore::getInfo(std::ostream &os) const
 
 Giocatore::operator std::string() const
 {
-    return '(' + std::string(1,this->ruolo) + ") " + this->nome + " " + std::to_string(this->crediti);
+    return '(' + std::string(1,this->ruolo) + ") " + this->nome + " " 
+        + std::to_string(this->crediti);
 }
 
 //overloading << per Giocatore
