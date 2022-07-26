@@ -7,7 +7,9 @@ Allenatore::Allenatore(const std::string nome, const unsigned short crediti): Pe
 
 void Allenatore::operazione(const Persona *giocatore)
 {
-    std::ofstream squadra(this->nome + ".txt", std::ios::app);
+    std::string path = "./output/" + this->nome + ".txt";
+
+    std::ofstream squadra(path, std::ios::app);
 
     if(typeid(*giocatore) == typeid(Giocatore))
     {
