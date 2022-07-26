@@ -14,6 +14,7 @@ class Persona
         Persona(const std::string, const unsigned short);
         virtual std::ostream& getInfo(std::ostream&) const;
 
+        std::string getNome() const;
         unsigned short getCrediti() const;
 };
 
