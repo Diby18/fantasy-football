@@ -6,7 +6,7 @@
 
 class Allenatore: public Persona
 {
-    std::list<Persona> listaGiocatori; 
+    std::list<Persona*> listaGiocatori; 
 
     public:
         Allenatore(const std::string, const unsigned short);

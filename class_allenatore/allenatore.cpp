@@ -9,12 +9,15 @@ void Allenatore::operazione(const Persona *giocatore)
 {
     std::ofstream squadra(this->nome + ".txt",std::ios::app);
 
-    this->listaGiocatori.push_front(*giocatore);
+    if(typeid(*giocatore) == typeid(Giocatore))
+    {
+        Giocatore *nuovo = (Giocatore*) giocatore;
 
-    if(typeid(*giocatore) == typeid(Giocatore)) 
-        
-        squadra<<(std::string) *( (Giocatore*) giocatore )<<std::endl; 
+        this->listaGiocatori.push_front(new Giocatore(*nuovo));
+    }
 
+    else { std::cerr<<"Inserimento non valido\n"; return; }
+    
     this->crediti -= giocatore->getCrediti(); 
 }
 
@@ -28,7 +31,7 @@ std::ostream& Allenatore::getInfo(std::ostream &os) const
 
     os<<"Giocatori acquistati\n\n";
 
-    for(auto giocatore : this->listaGiocatori) giocatore.getInfo(os);
+    for(auto giocatore : this->listaGiocatori) giocatore->getInfo(os);
 
     return os;
 }
