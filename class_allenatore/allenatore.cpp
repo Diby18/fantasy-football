@@ -21,7 +21,7 @@ void Allenatore::operazione(const Persona *giocatore)
     this->crediti -= giocatore->getCrediti(); 
 }
 
-std::ostream& Allenatore::getInfo(std::ostream &os) const
+void Allenatore::getInfo(std::ostream &os) const
 {
     system("cls");
 
@@ -32,13 +32,13 @@ std::ostream& Allenatore::getInfo(std::ostream &os) const
     os<<"Giocatori acquistati\n\n";
 
     for(auto giocatore : this->listaGiocatori) giocatore->getInfo(os);
-
-    return os;
 }
 
 
 //overloading << per Allenatore
 std::ostream& operator<<(std::ostream &os, const Allenatore &allenatore)
 {
-    return allenatore.getInfo(os);
+    allenatore.getInfo(os);
+
+    return os;
 }

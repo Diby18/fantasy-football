@@ -7,11 +7,11 @@ Giocatore::Giocatore(const std::string nome, const unsigned short prezzo, const 
     this->ruolo = ruolo;
 }
 
-std::ostream& Giocatore::getInfo(std::ostream &os) const
+void Giocatore::getInfo(std::ostream &os) const
 {
     os<<"\tRuolo: "<<this->ruolo<<"\n";
 
-    return Persona::getInfo(os);
+    Persona::getInfo(os);
 }
 
 Giocatore::operator std::string() const
@@ -22,5 +22,7 @@ Giocatore::operator std::string() const
 //overloading << per Giocatore
 std::ostream& operator<<(std::ostream &os, const Giocatore &giocatore)
 {
-    return giocatore.getInfo(os);
+    giocatore.getInfo(os);
+
+    return os;
 }

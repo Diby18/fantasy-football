@@ -9,9 +9,9 @@ Persona::Persona(const std::string nome, const unsigned short crediti)
     this->crediti = crediti;
 }
 
-std::ostream& Persona::getInfo(std::ostream &os) const
+void Persona::getInfo(std::ostream &os) const
 {
-    return os<<"\tNome: "<<this->nome<<"\n\tCrediti: "<<this->crediti<<std::endl<<std::endl;
+    os<<"\tNome: "<<this->nome<<"\n\tCrediti: "<<this->crediti<<std::endl<<std::endl;
 }
 
 std::string Persona::getNome() const { return this->nome; }

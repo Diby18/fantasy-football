@@ -10,7 +10,7 @@ class Giocatore: public Persona
     public:
         Giocatore();
         Giocatore(const std::string, const unsigned short,const char);
-        std::ostream& getInfo(std::ostream&) const;
+        void getInfo(std::ostream&) const;
 
         operator std::string() const;
 
