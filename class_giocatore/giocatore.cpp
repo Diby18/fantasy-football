@@ -9,7 +9,7 @@ Giocatore::Giocatore(const std::string nome, const unsigned short prezzo, const 
 
 std::ostream& Giocatore::getInfo(std::ostream &os) const
 {
-    os<<"Ruolo: "<<this->ruolo<<"\n";
+    os<<"\tRuolo: "<<this->ruolo<<"\n";
 
     return Persona::getInfo(os);
 }
