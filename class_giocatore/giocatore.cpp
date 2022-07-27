@@ -17,7 +17,7 @@ Giocatore::operator std::string() const
 //overloading << per Giocatore
 std::ostream& operator<<(std::ostream &os, const Giocatore &giocatore)
 {
-    //giocatore.getInfo(os);
+    giocatore.getInfo(os);
 
     return os;
 }

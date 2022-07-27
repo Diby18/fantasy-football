@@ -23,7 +23,7 @@ void Allenatore::eseguiOperazione(Persona *giocatore)
 //overloading << per Allenatore
 std::ostream& operator<<(std::ostream &os, const Allenatore &allenatore)
 {
-    //allenatore.getInfo(os);
+    allenatore.getInfo(os);
 
     return os;
 }
