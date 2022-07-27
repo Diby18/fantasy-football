@@ -1,7 +1,12 @@
 #include "giocatore.h"
 
+Giocatore::Giocatore(): Persona() { }
+
 Giocatore::Giocatore(const std::string nome, 
-const unsigned short prezzo, const char _ruolo): Persona(nome,prezzo), ruolo(_ruolo) { }
+const unsigned short prezzo, const char ruolo): Persona(nome,prezzo)
+{
+    this->ruolo = ruolo;
+}
 
 void Giocatore::eseguiOperazione(Persona *proprietario)
 {
@@ -22,4 +27,11 @@ std::ostream& operator<<(std::ostream &os, const Giocatore &giocatore)
     giocatore.getInfo(os);
 
     return os;
+}
+
+std::istream& operator>>(std::istream &is, Giocatore &giocatore)
+{
+    is>>giocatore.ruolo>>giocatore.nome>>giocatore.crediti;
+    
+    return is;
 }
