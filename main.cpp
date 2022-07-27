@@ -70,16 +70,16 @@ void input(vector<Persona*> &allenatori)
     system("cls");
 }
 
+std::ostream& operator<<(std::ostream &os, const Persona &persona)
+{
+    persona.getInfo(os);
+
+    return os;
+}
+
 ostream& operator<<(ostream &os, const vector<Persona*> vec)
 {
-    for(auto i : vec)
-    {
-        if(typeid(*i) == typeid(Allenatore))
-        {
-            os<< *( (Giocatore*) i );
-        }
-
-    }
+    for(auto i : vec) os<<*i;
 
     return os;
 }
