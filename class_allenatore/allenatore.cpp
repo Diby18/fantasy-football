@@ -24,6 +24,8 @@ void Allenatore::eseguiOperazione(Persona *giocatore)
 std::ostream& operator<<(std::ostream &os, const Allenatore &allenatore)
 {
     allenatore.getInfo(os);
+    
+    for(auto i : allenatore.listaGiocatori) os<< * ( (Giocatore*) i);
 
     return os;
 }
