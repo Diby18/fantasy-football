@@ -1,18 +1,11 @@
 #include "giocatore.h"
 
-Giocatore::Giocatore() { }
+Giocatore::Giocatore(const std::string nome, 
+const unsigned short prezzo, const char _ruolo): Persona(nome,prezzo), ruolo(_ruolo) { }
 
-Giocatore::Giocatore(const std::string nome, const unsigned short prezzo, const char ruolo)
-: Persona(nome,prezzo) 
-{ 
-    this->ruolo = ruolo;
-}
-
-void Giocatore::getInfo(std::ostream &os) const
+void Giocatore::eseguiOperazione(Persona *proprietario)
 {
-    os<<"\tRuolo: "<<this->ruolo<<"\n";
-
-    Persona::getInfo(os);
+    this->proprietario = proprietario;
 }
 
 Giocatore::operator std::string() const
@@ -24,7 +17,7 @@ Giocatore::operator std::string() const
 //overloading << per Giocatore
 std::ostream& operator<<(std::ostream &os, const Giocatore &giocatore)
 {
-    giocatore.getInfo(os);
+    //giocatore.getInfo(os);
 
     return os;
 }

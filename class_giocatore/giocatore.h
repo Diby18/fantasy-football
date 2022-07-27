@@ -5,12 +5,12 @@
 
 class Giocatore: public Persona
 {
-    char ruolo;
+    const char ruolo;
+    const Persona *proprietario;
 
     public:
-        Giocatore();
         Giocatore(const std::string, const unsigned short,const char);
-        void getInfo(std::ostream&) const;
+        void eseguiOperazione(Persona*);
 
         operator std::string() const;
 
