@@ -21,11 +21,11 @@ void Allenatore::eseguiOperazione(Persona *giocatore)
 }
 
 //overloading << per Allenatore
-std::ostream& operator<<(std::ostream &os, const Allenatore &allenatore)
+/*std::ostream& operator<<(std::ostream &os, const Allenatore &allenatore)
 {
     allenatore.getInfo(os);
     
     for(auto i : allenatore.listaGiocatori) os<< * ( (Giocatore*) i);
 
     return os;
-}
+}*/

@@ -15,7 +15,7 @@ class Giocatore: public Persona
 
         operator std::string() const;
 
-        friend std::ostream& operator<<(std::ostream&,const Giocatore&);
+        //friend std::ostream& operator<<(std::ostream&,const Giocatore&);
         friend std::istream& operator>>(std::istream&, Giocatore&);
 };
 

@@ -12,7 +12,7 @@ class Allenatore: public Persona
         Allenatore(const std::string, const unsigned short);
         void eseguiOperazione(Persona*); //acquisto di un giocatore
         
-        friend std::ostream& operator<<(std::ostream&, const Allenatore&);
+        //friend std::ostream& operator<<(std::ostream&, const Allenatore&);
 };
 
 
