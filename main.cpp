@@ -6,22 +6,9 @@
 
 #include "class_allenatore/allenatore.h"
 #include "class_giocatore/giocatore.h"
+#include "class_fantacalcio/fantacalcio.h"
 
 using namespace std;
-
-std::ostream& operator<<(std::ostream &os, const Persona &persona)
-{
-    persona.getInfo(os);
-
-    return os;
-}
-
-ostream& operator<<(ostream &os, const vector<Persona*> vec)
-{
-    for(auto i : vec) os<<*i;
-
-    return os;
-}
 
 bool checkInput(istream &is)
 {
@@ -105,16 +92,61 @@ unsigned short selezioneAzione()
     return scelta;
 }
 
+/*void esegui(vector<Persona*> allenatori, vector<Persona*> giocatoriAcquisiti)
+{
+    unsigned short azione;
+
+    while( ( azione = selezioneAzione() ) != 0)
+    {
+        if(azione == 1)
+        {
+            Giocatore *nuovo = new Giocatore;
+
+            cout<<"Inserire il ruolo, il nome e il prezzo di acquisto del giocatore"
+                    <<" nel seguente ordine ed lasciando tra ogni campo uno spazio\n"
+                    <<"Es: A Immobile 100";
+                
+            cin>>*nuovo;
+
+            allenatori.push_back(nuovo);
+        }
+
+        else if(azione == 2)
+        {
+            string nome;
+            cout<<"Inserire il nome dell'allenatore di cui si vogliono vedere gli acquisti: ";
+
+            cin>>nome;
+
+            for(auto i : allenatori)
+            {
+                if(nome == i->getNome())
+                {
+                    for(auto j : i->)
+
+                }
+
+            }
+        }
+    }
+
+}*/
+
 int main()
 {
-    vector<Persona*> allenatori;
-    vector<Persona*> giocatoriAcquistati;
+    /*vector<Persona*> allenatori;
+    vector<Persona*> giocatoriAcquistati;*/
 
     /*input(allenatori);
 
     cout<<allenatori;*/
 
-    selezioneAzione();
+    Fantacalcio fanta(1000);
+
+    fanta.aggiungiAllenatore(new Allenatore("flavio",1000));
+    fanta.aggiungiAllenatore(new Allenatore("mattia",1000));
+
+    fanta.stampaAllenatori();
 
     cout<<"\n\nFine";
 
