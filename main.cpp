@@ -9,6 +9,20 @@
 
 using namespace std;
 
+std::ostream& operator<<(std::ostream &os, const Persona &persona)
+{
+    persona.getInfo(os);
+
+    return os;
+}
+
+ostream& operator<<(ostream &os, const vector<Persona*> vec)
+{
+    for(auto i : vec) os<<*i;
+
+    return os;
+}
+
 bool checkInput(istream &is)
 {
     if(cin.fail())
@@ -70,18 +84,25 @@ void input(vector<Persona*> &allenatori)
     system("cls");
 }
 
-std::ostream& operator<<(std::ostream &os, const Persona &persona)
+unsigned short selezioneAzione()
 {
-    persona.getInfo(os);
+    unsigned short scelta;
 
-    return os;
-}
+    do
+    {
+        system("cls");
 
-ostream& operator<<(ostream &os, const vector<Persona*> vec)
-{
-    for(auto i : vec) os<<*i;
+        cout<<"Cosa vuoi fare?\n\n- 0 per terminare la sessione"<<
+            "\n- 1 per registare un acquisto\n- 2 per stampare"
+            << "gli acquisti di un allenatore"<<endl<<endl;
 
-    return os;
+        cout<<"Inserisci: ";
+
+        cin>>scelta;
+
+    } while(!checkInput(cin));
+
+    return scelta;
 }
 
 int main()
@@ -89,9 +110,11 @@ int main()
     vector<Persona*> allenatori;
     vector<Persona*> giocatoriAcquistati;
 
-    input(allenatori);
+    /*input(allenatori);
 
-    cout<<allenatori;
+    cout<<allenatori;*/
+
+    selezioneAzione();
 
     cout<<"\n\nFine";
 
