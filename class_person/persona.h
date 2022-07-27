@@ -12,7 +12,7 @@ class Persona
     public:
         Persona();
         Persona(const std::string, const unsigned short);
-        virtual void getInfo(std::ostream&) const;
+        void getInfo(std::ostream&) const;
         virtual void eseguiOperazione(Persona*) = 0;
 
         std::string getNome() const;
