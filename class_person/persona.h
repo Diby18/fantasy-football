@@ -17,6 +17,8 @@ class Persona
 
         std::string getNome() const;
         unsigned short getCrediti() const;
+
+        friend std::ostream& operator<<(std::ostream&, const Persona&);
 };
 
 

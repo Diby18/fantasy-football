@@ -17,3 +17,11 @@ void Persona::getInfo(std::ostream &os) const
 std::string Persona::getNome() const { return this->nome; }
 
 unsigned short Persona::getCrediti() const { return this->crediti; }
+
+//overloading <<
+std::ostream& operator<<(std::ostream &os, const Persona &persona)
+{
+    persona.getInfo(os);
+
+    return os;
+}
