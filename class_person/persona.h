@@ -6,7 +6,7 @@
 class Persona
 {
     protected:
-        const std::string nome;
+        std::string nome;
         unsigned short crediti;    
         
     public:

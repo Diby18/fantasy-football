@@ -2,8 +2,10 @@
 
 Persona::Persona() { }
 
-Persona::Persona(const std::string _nome, const unsigned short crediti): nome(_nome)
+Persona::Persona(const std::string nome, const unsigned short crediti)
 {
+    this->nome = nome;
+
     this->crediti = crediti;
 }
 
