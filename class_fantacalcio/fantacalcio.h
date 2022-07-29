@@ -3,18 +3,24 @@
 
 #include <iostream>
 #include <vector>
-#include "../class_person/persona.h"
+#include <fstream>
+
+#include "../class_allenatore/allenatore.h"
+#include "../class_giocatore/giocatore.h"
 
 class Fantacalcio
 {
     std::vector<Persona*> allenatori;
     std::vector<Persona*> giocatoriAcquistati;
 
-    const unsigned short creditiAsta;
+    //const unsigned short creditiAsta;
+
+    Persona* cercaAllenatore(const std::string) const;
 
     public:
-        Fantacalcio(const unsigned short);
-        void aggiungiAllenatore(Persona *giocatore);
+        Fantacalcio();
+        void aggiungiAllenatore(Persona *);
+        void acquistaGiocatore(const std::string, Persona*);
         void stampaAllenatori() const;
 };
 
