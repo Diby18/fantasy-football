@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <typeinfo>
 
 #include "../class_allenatore/allenatore.h"
 #include "../class_giocatore/giocatore.h"
@@ -15,13 +16,15 @@ class Fantacalcio
 
     //const unsigned short creditiAsta;
 
-    Persona* cercaAllenatore(const std::string) const;
-
     public:
         Fantacalcio();
         void aggiungiAllenatore(Persona *);
         void acquistaGiocatore(const std::string, Persona*);
         void stampaAllenatori() const;
+
+         Persona* cercaAllenatore(const std::string) const;
+        Persona* cercaGiocatore(const std::string) const;
+
 };
 
 
