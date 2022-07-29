@@ -109,7 +109,7 @@ unsigned short selezioneAzione()
     do
     {
         cout<<"Cosa vuoi fare?\n\n- 0 per terminare la sessione"<<
-            "\n- 1 per registare un acquisto\n- 2 per stampare"
+            "\n- 1 per registare un acquisto\n- 2 per stampare "
             << "gli acquisti di un allenatore"<<endl<<endl;
 
         cout<<"Inserisci: ";
@@ -130,7 +130,7 @@ void esegui(Fantacalcio &fanta)
     while( (azione = selezioneAzione()) != 0)
     {
         system("cls");
-
+        
         if(azione == 1)
         {
             string allenatore;
@@ -143,7 +143,7 @@ void esegui(Fantacalcio &fanta)
                 cout<<"Inserire il nome dell'allenatore: ";
                 cin>>allenatore;
 
-                if(!fanta.cercaAllenatore(allenatore))
+                if(!fanta.cerca(allenatore))
                 {
                     system("cls");
 
@@ -173,8 +173,6 @@ int main()
     if(!fanta) throw runtime_error(noAlloc());
 
     input(*fanta);
-
-    cout<<endl;
 
     esegui(*fanta);
 
