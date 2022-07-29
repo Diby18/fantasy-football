@@ -1,11 +1,14 @@
 #include <iostream>
 #include <limits>
 #include <stdexcept>
-#include <sstream>
+#include <ctype.h>
+
 
 #include "class_fantacalcio/fantacalcio.h"
 
 using namespace std;
+
+inline string noAlloc() { return "Impossibile allocare memoria"; } 
 
 //input su stream
 bool checkInput(istream &is)
@@ -21,25 +24,6 @@ bool checkInput(istream &is)
     }
 
     return true;
-}
-
-//input su stringa
-string* spliStr(const string &input)
-{
-    string *info = new string[3];
-
-    int indexBlank, pos = 0, count = 0;
-
-    while(pos < input.length())
-    {
-        indexBlank = input.find("", pos);
-
-        info[count++] = input.substr(pos, indexBlank - pos);
-
-        pos = indexBlank + 1;
-    }
-
-    return (count == 1 || count == 2 ? info : nullptr);
 }
 
 void input(Fantacalcio &fanta, const unsigned short crediti)
@@ -86,6 +70,35 @@ void input(Fantacalcio &fanta)
     system("cls");
 }
 
+Giocatore* creaGiocatore()
+{
+    Giocatore *nuovo = new Giocatore;
+    bool errore;
+    string ruoliPossibili = "PDCA";
+   
+    do
+    {
+        errore = false;
+
+        cout<<"Inserire i dati del giocatore nel seguente formato:"
+            <<"ruolo nome prezzo\n"<<"Es: A Immobile 100\n\nInserisci: ";
+    
+        cin>>*nuovo;
+
+        errore = !checkInput(cin);
+
+        if(ruoliPossibili.find(nuovo->getRuolo()) == string::npos)
+        {
+            errore = true;
+
+            cerr<<"\nERRORE!!\nI ruoli possibili sono: P D C A\n";
+        }
+
+    } while(errore);
+
+    return nuovo;
+}
+
 unsigned short selezioneAzione()
 {
     unsigned short scelta;
@@ -109,18 +122,36 @@ void esegui(Fantacalcio &fanta)
 {
     unsigned short azione;
 
-    do
+    while( (azione = selezioneAzione()) != 0)
     {
-        azione = selezioneAzione();
-
-        switch(azione)
+        if(azione == 1)
         {
-            case 0:
-                
+            string allenatore;
+            bool notFound;
 
+            do
+            {
+                notFound = false;
+
+                cout<<"Inserire il nome dell'allenatore: ";
+                cin>>allenatore;
+
+                if(!fanta.cercaAllenatore(allenatore))
+                {
+                    system("cls");
+
+                    notFound = true;
+
+                    cerr<<"\n\nERRORE\nL'allenatore inserito non esiste\n";
+                }
+
+            } while(notFound);
+            
+            system("cls");
+
+            fanta.acquistaGiocatore(allenatore, creaGiocatore());
         }
-
-    } while(azione != 0);
+    }
 
 }
 
@@ -128,7 +159,7 @@ int main()
 {
     Fantacalcio *fanta = new Fantacalcio;
 
-    if(!fanta) throw runtime_error("Impossibile allocare memoria\0");
+    if(!fanta) throw runtime_error(noAlloc());
 
     input(*fanta);
 
