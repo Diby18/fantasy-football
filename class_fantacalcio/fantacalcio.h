@@ -5,9 +5,12 @@
 #include <vector>
 #include <fstream>
 #include <typeinfo>
+#include <windows.h>
 
 #include "../class_allenatore/allenatore.h"
 #include "../class_giocatore/giocatore.h"
+
+inline unsigned attesa() { return 1000; }
 
 class Fantacalcio
 {
@@ -22,8 +25,8 @@ class Fantacalcio
         void acquistaGiocatore(const std::string, Persona*);
         void stampaAllenatori() const;
 
-         Persona* cercaAllenatore(const std::string) const;
-        Persona* cercaGiocatore(const std::string) const;
+        Persona* cerca(const std::string) const;
+        Persona* cerca(const Persona* ) const;
 
 };
 
