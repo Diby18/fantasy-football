@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include <ctype.h>
 
-
 #include "class_fantacalcio/fantacalcio.h"
 
 using namespace std;
@@ -15,7 +14,9 @@ bool checkInput(istream &is)
 {
     if(cin.fail())
     {
-        cerr<<"\nERRORE!!\nE' possibile inserire solo numeri\n";
+        system("cls");
+
+        cerr<<"ERRORE!!\nE' possibile inserire solo numeri\n";
 
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -89,6 +90,8 @@ Giocatore* creaGiocatore()
 
         if(ruoliPossibili.find(nuovo->getRuolo()) == string::npos)
         {
+            system("cls");
+
             errore = true;
 
             cerr<<"\nERRORE!!\nI ruoli possibili sono: P D C A\n";
@@ -122,8 +125,12 @@ void esegui(Fantacalcio &fanta)
 {
     unsigned short azione;
 
+    fanta.stampaAllenatori();
+
     while( (azione = selezioneAzione()) != 0)
     {
+        system("cls");
+
         if(azione == 1)
         {
             string allenatore;
@@ -142,7 +149,7 @@ void esegui(Fantacalcio &fanta)
 
                     notFound = true;
 
-                    cerr<<"\n\nERRORE\nL'allenatore inserito non esiste\n";
+                    cerr<<"ERRORE\nL'allenatore inserito non esiste\n";
                 }
 
             } while(notFound);
@@ -150,6 +157,10 @@ void esegui(Fantacalcio &fanta)
             system("cls");
 
             fanta.acquistaGiocatore(allenatore, creaGiocatore());
+
+            system("cls");
+
+            fanta.stampaAllenatori();
         }
     }
 
@@ -163,14 +174,9 @@ int main()
 
     input(*fanta);
 
-    fanta->stampaAllenatori();
-
     cout<<endl;
 
     esegui(*fanta);
-
-    cout<<endl;
-    fanta->stampaAllenatori();
 
     cout<<"\n\nFine";
 
