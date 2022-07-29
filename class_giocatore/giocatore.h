@@ -19,6 +19,7 @@ class Giocatore: public Persona
         void eseguiOperazione(Persona*);
 
         operator std::string() const;
+        bool operator==(const Giocatore&) const;
 
         friend std::ostream& operator<<(std::ostream&,const Giocatore&);
         friend std::istream& operator>>(std::istream&, Giocatore&);

@@ -23,6 +23,11 @@ Giocatore::operator std::string() const
         + std::to_string(this->crediti);
 }
 
+bool Giocatore::operator==(const Giocatore &giocatore) const
+{
+    return this->nome == giocatore.nome && this->ruolo == giocatore.ruolo;
+}
+
 //overloading << per Giocatore
 std::ostream& operator<<(std::ostream &os, const Giocatore &giocatore)
 {
