@@ -1,15 +1,13 @@
 #include <iostream>
 #include <limits>
-#include <vector>
-#include <typeinfo>
-#include <cctype>
+#include <stdexcept>
+#include <sstream>
 
-#include "class_allenatore/allenatore.h"
-#include "class_giocatore/giocatore.h"
 #include "class_fantacalcio/fantacalcio.h"
 
 using namespace std;
 
+//input su stream
 bool checkInput(istream &is)
 {
     if(cin.fail())
@@ -25,7 +23,26 @@ bool checkInput(istream &is)
     return true;
 }
 
-void input(vector<Persona*> &allenatori, const unsigned short creditiAsta)
+//input su stringa
+string* spliStr(const string &input)
+{
+    string *info = new string[3];
+
+    int indexBlank, pos = 0, count = 0;
+
+    while(pos < input.length())
+    {
+        indexBlank = input.find("", pos);
+
+        info[count++] = input.substr(pos, indexBlank - pos);
+
+        pos = indexBlank + 1;
+    }
+
+    return (count == 1 || count == 2 ? info : nullptr);
+}
+
+void input(Fantacalcio &fanta, const unsigned short crediti)
 {
     unsigned short numeroAllenatori;
     string nomeAllenatore;
@@ -44,13 +61,11 @@ void input(vector<Persona*> &allenatori, const unsigned short creditiAsta)
         cout<<"Inserisci l'allenatore "<<i+1<<": ";
         cin>>nomeAllenatore;
 
-        nomeAllenatore[0] = toupper(nomeAllenatore[0]);
-
-        allenatori.push_back(new Allenatore(nomeAllenatore, creditiAsta));
+        fanta.aggiungiAllenatore(new Allenatore(nomeAllenatore,crediti));
     }
 }
 
-void input(vector<Persona*> &allenatori)
+void input(Fantacalcio &fanta)
 {
     bool errore;
     unsigned short crediti;
@@ -66,7 +81,7 @@ void input(vector<Persona*> &allenatori)
 
     system("cls");
 
-    input(allenatori,crediti);
+    input(fanta,crediti);
 
     system("cls");
 }
@@ -77,8 +92,6 @@ unsigned short selezioneAzione()
 
     do
     {
-        system("cls");
-
         cout<<"Cosa vuoi fare?\n\n- 0 per terminare la sessione"<<
             "\n- 1 per registare un acquisto\n- 2 per stampare"
             << "gli acquisti di un allenatore"<<endl<<endl;
@@ -92,61 +105,41 @@ unsigned short selezioneAzione()
     return scelta;
 }
 
-/*void esegui(vector<Persona*> allenatori, vector<Persona*> giocatoriAcquisiti)
+void esegui(Fantacalcio &fanta)
 {
     unsigned short azione;
 
-    while( ( azione = selezioneAzione() ) != 0)
+    do
     {
-        if(azione == 1)
-        {
-            Giocatore *nuovo = new Giocatore;
+        azione = selezioneAzione();
 
-            cout<<"Inserire il ruolo, il nome e il prezzo di acquisto del giocatore"
-                    <<" nel seguente ordine ed lasciando tra ogni campo uno spazio\n"
-                    <<"Es: A Immobile 100";
+        switch(azione)
+        {
+            case 0:
                 
-            cin>>*nuovo;
 
-            allenatori.push_back(nuovo);
         }
 
-        else if(azione == 2)
-        {
-            string nome;
-            cout<<"Inserire il nome dell'allenatore di cui si vogliono vedere gli acquisti: ";
+    } while(azione != 0);
 
-            cin>>nome;
-
-            for(auto i : allenatori)
-            {
-                if(nome == i->getNome())
-                {
-                    for(auto j : i->)
-
-                }
-
-            }
-        }
-    }
-
-}*/
+}
 
 int main()
 {
-    /*vector<Persona*> allenatori;
-    vector<Persona*> giocatoriAcquistati;*/
+    Fantacalcio *fanta = new Fantacalcio;
 
-    /*input(allenatori);
+    if(!fanta) throw runtime_error("Impossibile allocare memoria\0");
 
-    cout<<allenatori;*/
+    input(*fanta);
 
-    Fantacalcio fanta(1000);
+    fanta->stampaAllenatori();
 
-    fanta.aggiungiAllenatore(new Allenatore("flavio",1000));
-    fanta.aggiungiAllenatore(new Allenatore("mattia",1000));
+    cout<<endl;
 
-    fanta.stampaAllenatori();
+    esegui(*fanta);
+
+    cout<<endl;
+    fanta->stampaAllenatori();
 
     cout<<"\n\nFine";
 
