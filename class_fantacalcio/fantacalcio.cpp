@@ -2,7 +2,7 @@
 
 Fantacalcio::Fantacalcio() { }
 
-Persona* Fantacalcio::cercaAllenatore(const std::string nome) const
+Persona* Fantacalcio::cerca(const std::string nome) const
 {
     for(auto i : this->allenatori)
 
@@ -11,11 +11,12 @@ Persona* Fantacalcio::cercaAllenatore(const std::string nome) const
     return nullptr;
 }
 
-Persona* Fantacalcio::cercaGiocatore(const std::string nome) const
+Persona* Fantacalcio::cerca(const Persona *giocatore) const
 {
     for(auto i : this->giocatoriAcquistati)
 
-        if(i->getNome() == nome) return i;
+        if( *((Giocatore*) i) == *((Giocatore*) giocatore)) 
+            return i;
     
     return nullptr;
 }
@@ -27,11 +28,13 @@ void Fantacalcio::aggiungiAllenatore(Persona *allenatore)
 
 void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocatore)
 {
-    Persona *allenatore = this->cercaAllenatore(nomeAllenatore);
+    Persona *allenatore = this->cerca(nomeAllenatore);
 
-    if(this->cercaGiocatore(giocatore->getNome()))
+    if(this->cerca(giocatore))
     {
         std::cerr<<"\n\nIl giocatore e' stato gia' comprato\n";
+
+        Sleep(attesa());
 
         return;
     }
@@ -41,6 +44,8 @@ void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocato
     if(allenatore->getCrediti() < giocatore->getCrediti())
     {
         std::cerr<<"\n\nSaldo non sufficiente per acquistare il giocatore\n";
+        
+        Sleep(attesa());
 
         return;
     }
