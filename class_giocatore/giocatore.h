@@ -11,6 +11,7 @@ class Giocatore: public Persona
     public:
         Giocatore();
         Giocatore(const std::string, const unsigned short,const char);
+
         void eseguiOperazione(Persona*);
 
         operator std::string() const;
