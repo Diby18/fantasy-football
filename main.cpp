@@ -110,7 +110,8 @@ unsigned short selezioneAzione()
     {
         cout<<"Cosa vuoi fare?\n\n- 0 per terminare la sessione"<<
             "\n- 1 per registare un acquisto\n- 2 per stampare "
-            << "gli acquisti di un allenatore"<<endl<<endl;
+            << "gli acquisti di un allenatore\n- 3 per stampare tutti "
+            << "i giocatori comprati"<<endl<<endl;
 
         cout<<"Inserisci: ";
 
@@ -174,13 +175,14 @@ void esegui(Fantacalcio &fanta)
                 }
             }
 
-            else fanta.stampaAcqustiAllenatore(allenatore);
-
-            system("cls");
-
-            fanta.stampaAllenatori();
+            else fanta.stampaAcquisti(allenatore);
         }
 
+        else if(azione == 3) fanta.stampaAcquisti();
+
+        system("cls");
+
+        fanta.stampaAllenatori();
     }
 
 }
