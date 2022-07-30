@@ -6,17 +6,27 @@ Allenatore::Allenatore(const std::string nome, const unsigned short crediti): Pe
 
 void Allenatore::eseguiOperazione(Persona *giocatore)
 {
-    this->listaGiocatori.push_front(giocatore);
+    this->listaGiocatori.push_back(giocatore);
     
     this->crediti -= giocatore->getCrediti(); 
 }
 
+const Persona* const Allenatore::operator[](const unsigned index) const
+{
+    return this->listaGiocatori[index % this->listaGiocatori.size()];
+}
+
+unsigned short Allenatore::numeroAcquistati() const
+{
+    return this->listaGiocatori.size();
+}
+
 //overloading << per Allenatore
-/*std::ostream& operator<<(std::ostream &os, const Allenatore &allenatore)
+std::ostream& operator<<(std::ostream &os, const Allenatore &allenatore)
 {
     allenatore.getInfo(os);
     
-    for(auto i : allenatore.listaGiocatori) os<< * ( (Giocatore*) i);
+    for(auto i : allenatore.listaGiocatori) os<<*i;
 
     return os;
-}*/
+}
