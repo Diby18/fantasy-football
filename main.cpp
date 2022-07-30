@@ -16,7 +16,7 @@ bool checkInput(istream &is)
     {
         system("cls");
 
-        cerr<<"ERRORE!!\nE' possibile inserire solo numeri\n";
+        cerr<<"ERRORE!!\nE' possibile inserire solo numeri"<<std::endl<<std::endl;
 
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -131,7 +131,7 @@ void esegui(Fantacalcio &fanta)
     {
         system("cls");
         
-        if(azione == 1)
+        if(azione == 1 || azione == 2)
         {
             string allenatore;
             bool notFound;
@@ -149,19 +149,22 @@ void esegui(Fantacalcio &fanta)
 
                     notFound = true;
 
-                    cerr<<"ERRORE\nL'allenatore inserito non esiste\n";
+                    cerr<<"ERRORE\nL'allenatore inserito non esiste"<<endl<<endl;
                 }
 
             } while(notFound);
             
             system("cls");
 
-            fanta.acquistaGiocatore(allenatore, creaGiocatore());
+            if(azione == 1) fanta.acquistaGiocatore(allenatore, creaGiocatore());
+
+            else fanta.stampaAcqustiAllenatore(allenatore);
 
             system("cls");
 
             fanta.stampaAllenatori();
         }
+
     }
 
 }
