@@ -12,11 +12,12 @@ class Persona
     public:
         Persona();
         Persona(const std::string, const unsigned short);
-        void getInfo(std::ostream&) const;
-        virtual void eseguiOperazione(Persona*) = 0;
 
+        void getInfo(std::ostream&) const;
         std::string getNome() const;
         unsigned short getCrediti() const;
+        
+        virtual void eseguiOperazione(Persona*) = 0;
 
         friend std::ostream& operator<<(std::ostream&, const Persona&);
 };
