@@ -44,5 +44,7 @@ std::istream& operator>>(std::istream &is, Giocatore &giocatore)
     
     giocatore.ruolo = toupper(giocatore.ruolo);
 
+    for(auto &i: giocatore.nome) i = tolower(i);
+
     return is;
 }
