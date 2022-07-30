@@ -94,7 +94,7 @@ Giocatore* creaGiocatore()
 
             errore = true;
 
-            cerr<<"\nERRORE!!\nI ruoli possibili sono: P D C A\n";
+            cerr<<"ERRORE!!\nI ruoli possibili sono: P D C A\n";
         }
 
     } while(errore);
@@ -156,7 +156,23 @@ void esegui(Fantacalcio &fanta)
             
             system("cls");
 
-            if(azione == 1) fanta.acquistaGiocatore(allenatore, creaGiocatore());
+            if(azione == 1)
+            {
+                Giocatore *nuovo = creaGiocatore();
+                
+                if(!fanta.cerca(nuovo)) fanta.acquistaGiocatore(allenatore, nuovo);
+
+                else
+                {
+                    system("cls");
+
+                    cerr<<"Il giocatore e' stato gia' comprato\n";
+                    
+                    delete nuovo;
+
+                    system("pause");
+                }
+            }
 
             else fanta.stampaAcqustiAllenatore(allenatore);
 
