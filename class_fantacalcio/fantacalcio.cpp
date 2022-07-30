@@ -30,20 +30,11 @@ void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocato
 {
     Persona *allenatore = this->cerca(nomeAllenatore);
 
-    if(this->cerca(giocatore))
-    {
-        std::cerr<<"\n\nIl giocatore e' stato gia' comprato\n";
-
-        Sleep(attesa());
-
-        return;
-    }
-
     if(allenatore->getCrediti() < giocatore->getCrediti())
     {
         std::cerr<<"\n\nSaldo non sufficiente per acquistare il giocatore\n";
         
-        Sleep(attesa());
+        system("pause");
 
         return;
     }
