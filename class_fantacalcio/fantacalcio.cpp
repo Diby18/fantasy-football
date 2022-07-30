@@ -59,7 +59,7 @@ void Fantacalcio::stampaAllenatori() const
     std::cout<<std::endl;
 }
 
-void Fantacalcio::stampaAcqustiAllenatore(std::string nomeAllenatore) const
+void Fantacalcio::stampaAcquisti(std::string nomeAllenatore) const
 {    
     Allenatore *allenatore = dynamic_cast<Allenatore*>(this->cerca(nomeAllenatore));
 
@@ -73,6 +73,23 @@ void Fantacalcio::stampaAcqustiAllenatore(std::string nomeAllenatore) const
 
             std::cout<< *( (const Giocatore* const) (*allenatore)[i] )<<std::endl;
     }
+
+    system("pause");
+}
+
+void Fantacalcio::stampaAcquisti() const
+{
+    for(auto i : this->giocatoriAcquistati)
+    {
+        Giocatore *giocatore = dynamic_cast<Giocatore*>(i);
+
+        std::cout<<"Proprietario: "<< giocatore->getProprietario()->getNome()
+            <<"\n"<<*giocatore<<std::endl;
+    }
+
+    if(this->giocatoriAcquistati.empty()) 
+        
+        std::cout<<"Nessun giocatore comprato"<<std::endl<<std::endl;
 
     system("pause");
 }
