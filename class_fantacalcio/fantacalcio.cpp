@@ -39,8 +39,6 @@ void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocato
         return;
     }
 
-    if(!allenatore) { std::cerr<<"\nAllenatore non trovato\n"; return; }
-
     if(allenatore->getCrediti() < giocatore->getCrediti())
     {
         std::cerr<<"\n\nSaldo non sufficiente per acquistare il giocatore\n";
@@ -66,4 +64,24 @@ void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocato
 void Fantacalcio::stampaAllenatori() const
 {
     for(auto i : this->allenatori) std::cout<<*i;
+
+    std::cout<<std::endl;
+}
+
+void Fantacalcio::stampaAcqustiAllenatore(std::string nomeAllenatore) const
+{    
+    Allenatore *allenatore = dynamic_cast<Allenatore*>(this->cerca(nomeAllenatore));
+
+    if(allenatore->numeroAcquistati() == 0) 
+        
+        std::cout<<"Nessun giocatore acquistato"<<std::endl<<std::endl;
+
+    else
+    {
+        for(unsigned short i = 0; i<allenatore->numeroAcquistati(); i++)
+
+            std::cout<< *( (const Giocatore* const) (*allenatore)[i] )<<std::endl;
+    }
+
+    system("pause");
 }

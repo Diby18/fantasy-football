@@ -24,6 +24,7 @@ class Fantacalcio
         void aggiungiAllenatore(Persona *);
         void acquistaGiocatore(const std::string, Persona*);
         void stampaAllenatori() const;
+        void stampaAcqustiAllenatore(const std::string) const;
 
         Persona* cerca(const std::string) const;
         Persona* cerca(const Persona* ) const;
