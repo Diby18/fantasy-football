@@ -32,7 +32,9 @@ void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocato
 
     if(allenatore->getCrediti() < giocatore->getCrediti())
     {
-        std::cerr<<"\n\nSaldo non sufficiente per acquistare il giocatore\n";
+        system("cls");
+
+        std::cerr<<"ERRORE\nSaldo non sufficiente per acquistare il giocatore"<<std::endl;
         
         system("pause");
 
