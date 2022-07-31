@@ -83,7 +83,7 @@ void Fantacalcio::aggiungiAllenatore(Persona *allenatore)
     this->allenatori.push_back(allenatore);
 }
 
-void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocatore)
+void Fantacalcio::acquistaGiocatore(const std::string &nomeAllenatore, Persona *giocatore)
 {
     Persona *allenatore = this->cerca(nomeAllenatore);
 
@@ -120,7 +120,7 @@ void Fantacalcio::stampaAllenatori() const
     std::cout<<std::endl;
 }
 
-void Fantacalcio::stampaAcquisti(std::string nomeAllenatore) const
+void Fantacalcio::stampaAcquisti(const std::string &nomeAllenatore) const
 {    
     Allenatore *allenatore = dynamic_cast<Allenatore*>(this->cerca(nomeAllenatore));
 
@@ -155,7 +155,7 @@ void Fantacalcio::stampaAcquisti() const
     system("pause");
 }
 
-Persona* Fantacalcio::cerca(const std::string nome) const
+Persona* Fantacalcio::cerca(const std::string &nome) const
 {
     for(auto i : this->allenatori)
 
@@ -173,3 +173,8 @@ Persona* Fantacalcio::cerca(const Persona *giocatore) const
     
     return nullptr;
 }
+
+/*void Fantacalcio::esiste(const std::string &nome) const
+{
+
+}*/

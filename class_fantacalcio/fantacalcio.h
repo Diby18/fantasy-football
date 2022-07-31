@@ -25,21 +25,23 @@ class Fantacalcio
         Fantacalcio();
         ~Fantacalcio();
         void aggiungiAllenatore(Persona *);
-        void acquistaGiocatore(const std::string, Persona*);
+        void acquistaGiocatore(const std::string&, Persona*);
         
         void stampaAllenatori() const;
 
         //acquisti di un determinato allenatore
-        void stampaAcquisti(const std::string) const;
+        void stampaAcquisti(const std::string&) const;
 
         //tutti i giocatori acquistati al momento
         void stampaAcquisti() const;
 
         //cerca allenatore
-        Persona* cerca(const std::string) const;
+        Persona* cerca(const std::string&) const;
 
         //cerca giocatore 
         Persona* cerca(const Persona* ) const;
+
+        void esiste(const std::string&) const;
 };
 
 
