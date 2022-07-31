@@ -9,6 +9,8 @@ Persona::Persona(const std::string nome, const unsigned short crediti)
     this->crediti = crediti;
 }
 
+Persona::~Persona() { }
+
 void Persona::getInfo(std::ostream &os) const
 {
     os<<"Nome: "<<this->nome<<"\nCrediti: "<<this->crediti<<std::endl<<std::endl;

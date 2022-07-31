@@ -6,10 +6,11 @@
 
 class Allenatore: public Persona
 {
-    std::vector<Persona*> listaGiocatori; 
+    std::vector<Persona*> listaGiocatori;
 
     public:
         Allenatore(const std::string, const unsigned short);
+        ~Allenatore();
         void eseguiOperazione(Persona*); //acquisto di un giocatore
 
         const Persona* const operator[](const unsigned) const;

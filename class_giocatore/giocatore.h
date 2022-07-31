@@ -12,7 +12,8 @@ class Giocatore: public Persona
     public:
         Giocatore();
         Giocatore(const std::string, const unsigned short,const char);
-        
+        ~Giocatore();
+
         char getRuolo() const;
         const std::string& getProprietario() const;
 

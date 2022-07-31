@@ -4,6 +4,19 @@
 
 Allenatore::Allenatore(const std::string nome, const unsigned short crediti): Persona(nome,crediti) { }
 
+Allenatore::~Allenatore()
+{
+    for(auto i : this->listaGiocatori)
+    {
+        if(i) 
+        { 
+            delete i; 
+            
+            i = nullptr; 
+        }
+    }
+}
+
 void Allenatore::eseguiOperazione(Persona *giocatore)
 {
     this->listaGiocatori.push_back(giocatore);

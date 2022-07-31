@@ -8,6 +8,16 @@ const unsigned short prezzo, const char ruolo): Persona(nome,prezzo)
     this->ruolo = ruolo;
 }
 
+Giocatore::~Giocatore()
+{
+    if(this->proprietario)
+    { 
+        delete this->proprietario;
+
+        this->proprietario = nullptr;
+    }
+}
+
 void Giocatore::eseguiOperazione(Persona *proprietario)
 {
     this->proprietario = new std::string(proprietario->getNome());
