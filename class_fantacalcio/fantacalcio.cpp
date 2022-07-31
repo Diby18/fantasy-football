@@ -116,7 +116,7 @@ void Fantacalcio::stampaAcquisti() const
     {
         Giocatore *giocatore = dynamic_cast<Giocatore*>(i);
 
-        std::cout<<"Proprietario: "<< giocatore->getProprietario()->getNome()
+        std::cout<<"Proprietario: "<< giocatore->getProprietario()
             <<"\n"<<*giocatore<<std::endl;
     }
 
