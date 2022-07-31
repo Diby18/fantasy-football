@@ -4,6 +4,8 @@
 
 Allenatore::Allenatore(const std::string nome, const unsigned short crediti): Persona(nome,crediti) { }
 
+Persona* Allenatore::clona() const { return new Allenatore(*this); }
+
 Allenatore::~Allenatore()
 {
     for(auto i : this->listaGiocatori)

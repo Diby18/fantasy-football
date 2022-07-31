@@ -10,6 +10,9 @@ class Allenatore: public Persona
 
     public:
         Allenatore(const std::string, const unsigned short);
+        
+        Persona* clona() const;
+
         ~Allenatore();
         void eseguiOperazione(Persona*); //acquisto di un giocatore
 
