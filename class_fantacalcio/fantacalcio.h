@@ -17,8 +17,6 @@ class Fantacalcio
     std::vector<Persona*> allenatori;
     std::vector<Persona*> giocatoriAcquistati;
 
-    //const unsigned short creditiAsta;
-
     public:
         Fantacalcio();
         void aggiungiAllenatore(Persona *);
@@ -30,7 +28,6 @@ class Fantacalcio
 
         Persona* cerca(const std::string) const;
         Persona* cerca(const Persona* ) const;
-
 };
 
 

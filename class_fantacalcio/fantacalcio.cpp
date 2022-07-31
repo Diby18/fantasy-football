@@ -2,25 +2,6 @@
 
 Fantacalcio::Fantacalcio() { }
 
-Persona* Fantacalcio::cerca(const std::string nome) const
-{
-    for(auto i : this->allenatori)
-
-        if(i->getNome() == nome) return i;
-
-    return nullptr;
-}
-
-Persona* Fantacalcio::cerca(const Persona *giocatore) const
-{
-    for(auto i : this->giocatoriAcquistati)
-
-        if( *((Giocatore*) i) == *((Giocatore*) giocatore)) 
-            return i;
-    
-    return nullptr;
-}
-
 void Fantacalcio::aggiungiAllenatore(Persona *allenatore)
 {
     this->allenatori.push_back(allenatore);
@@ -94,4 +75,23 @@ void Fantacalcio::stampaAcquisti() const
         std::cout<<"Nessun giocatore comprato"<<std::endl<<std::endl;
 
     system("pause");
+}
+
+Persona* Fantacalcio::cerca(const std::string nome) const
+{
+    for(auto i : this->allenatori)
+
+        if(i->getNome() == nome) return i;
+
+    return nullptr;
+}
+
+Persona* Fantacalcio::cerca(const Persona *giocatore) const
+{
+    for(auto i : this->giocatoriAcquistati)
+
+        if( *((Giocatore*) i) == *((Giocatore*) giocatore)) 
+            return i;
+    
+    return nullptr;
 }
