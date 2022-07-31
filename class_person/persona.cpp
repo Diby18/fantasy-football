@@ -24,7 +24,7 @@ unsigned short Persona::getCrediti() const { return this->crediti; }
 
 bool Persona::operator<(const Persona &persona) const
 {
-    return this->crediti < persona.crediti;
+    return this->nome < persona.nome;
 }
 
 //overloading <<
