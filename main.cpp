@@ -11,6 +11,11 @@ inline string noAlloc() { return "Impossibile allocare memoria"; }
 
 inline unsigned short minCrediti() { return 100; }
 
+void toUpperStr(string &str)
+{
+    for(auto &i : str) i = toupper(i);
+}
+
 //input su stream
 bool checkInput(istream &is)
 {
@@ -143,13 +148,14 @@ unsigned short selezioneAzione()
         cout<<"Cosa vuoi fare?\n\n- 0 per terminare la sessione"<<
             "\n- 1 per registare un acquisto\n- 2 per stampare "
             << "gli acquisti di un allenatore\n- 3 per stampare tutti "
-            << "i giocatori comprati"<<endl<<endl;
+            << "i giocatori comprati\n- 4 per verificare se un determinato"
+            <<" giocatore e' stato acquistato"<<endl<<endl;
 
         cout<<"Inserisci: ";
 
         cin>>scelta;
 
-        if(scelta < 0 && scelta > 3)
+        if(scelta < 0 && scelta > 4)
         {
             system("cls");
 
@@ -222,6 +228,20 @@ void esegui(Fantacalcio &fanta)
         }
 
         else if(azione == 3) fanta.stampaAcquisti();
+
+        else
+        {
+            system("cls");
+
+            string nome;
+
+            cout<<"Inserire il giocatore da cercare: ";
+            cin>>nome;
+
+            toUpperStr(nome);
+            
+            fanta.esiste(nome);
+        }
 
         system("cls");
 
