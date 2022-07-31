@@ -7,14 +7,14 @@
 class Giocatore: public Persona
 {
     char ruolo;
-    const Persona *proprietario;
+    const std::string *proprietario;
 
     public:
         Giocatore();
         Giocatore(const std::string, const unsigned short,const char);
         
         char getRuolo() const;
-        const Persona * const getProprietario() const;
+        const std::string& getProprietario() const;
 
         void eseguiOperazione(Persona*);
 

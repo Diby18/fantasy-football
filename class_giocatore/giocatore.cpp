@@ -10,12 +10,12 @@ const unsigned short prezzo, const char ruolo): Persona(nome,prezzo)
 
 void Giocatore::eseguiOperazione(Persona *proprietario)
 {
-    this->proprietario = proprietario;
+    this->proprietario = new std::string(proprietario->getNome());
 }
 
 char Giocatore::getRuolo() const { return this->ruolo; }
 
-const Persona* const Giocatore::getProprietario() const { return this->proprietario; }
+const std::string& Giocatore::getProprietario() const { return *this->proprietario; }
 
 Giocatore::operator std::string() const
 {
