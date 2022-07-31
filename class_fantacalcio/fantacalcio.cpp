@@ -22,14 +22,18 @@ void Fantacalcio::merge(unsigned short inizio, unsigned short centrale,unsigned 
     {
         if(indexSx < sequenzaSx.capacity() && indexDx < sequenzaDx.capacity())
         {
-            if(*sequenzaSx[indexSx] < *sequenzaDx[indexDx]) this->giocatoriAcquistati[i] = sequenzaSx[indexSx++];
+            if(*sequenzaSx[indexSx] < *sequenzaDx[indexDx]) 
+                
+                this->giocatoriAcquistati[i] = sequenzaSx[indexSx++];
             
-            else this->giocatoriAcquistati[i] = sequenzaDx[indexDx++];
+            else 
+                
+                this->giocatoriAcquistati[i] = sequenzaDx[indexDx++];
         }
 
         else if(indexSx < sequenzaSx.capacity()) this->giocatoriAcquistati[i] = sequenzaSx[indexSx++];
 
-        else this->giocatoriAcquistati[i] = sequenzaDx[indexDx];
+        else this->giocatoriAcquistati[i] = sequenzaDx[indexDx++];
     }
 }
 
