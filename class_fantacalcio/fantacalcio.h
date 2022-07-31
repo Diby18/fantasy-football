@@ -17,6 +17,9 @@ class Fantacalcio
     std::vector<Persona*> allenatori;
     std::vector<Persona*> giocatoriAcquistati;
 
+    void merge(unsigned short, unsigned short, unsigned short);
+    void mergeSort(unsigned short, unsigned short);
+
     public:
         Fantacalcio();
         void aggiungiAllenatore(Persona *);

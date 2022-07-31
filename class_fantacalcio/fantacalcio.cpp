@@ -1,5 +1,53 @@
 #include "fantacalcio.h"
 
+void Fantacalcio::merge(unsigned short inizio, unsigned short centrale,unsigned short fine)
+{
+    std::vector<Persona*> sequenzaSx, sequenzaDx;
+
+    sequenzaSx.reserve(centrale - inizio + 1);
+    sequenzaDx.reserve(fine - centrale);
+
+    for(unsigned short i = 0; i<sequenzaSx.capacity(); i++) 
+        
+        sequenzaSx[i] = this->giocatoriAcquistati[inizio + i];
+
+    for(unsigned short i = 0; i<sequenzaDx.capacity(); i++) 
+        
+        sequenzaDx[i] = this->giocatoriAcquistati[centrale + i + 1];
+
+    
+    unsigned short indexSx = 0, indexDx = 0;
+
+    for(unsigned i = inizio; i<=fine; i++)
+    {
+        if(indexSx < sequenzaSx.capacity() && indexDx < sequenzaDx.capacity())
+        {
+            if(*sequenzaSx[indexSx] < *sequenzaDx[indexDx]) this->giocatoriAcquistati[i] = sequenzaSx[indexSx++];
+            
+            else this->giocatoriAcquistati[i] = sequenzaDx[indexDx++];
+        }
+
+        else if(indexSx < sequenzaSx.capacity()) this->giocatoriAcquistati[i] = sequenzaSx[indexSx++];
+
+        else this->giocatoriAcquistati[i] = sequenzaDx[indexDx];
+    }
+}
+
+void Fantacalcio::mergeSort(unsigned short inizio, unsigned short fine)
+{
+    if(inizio < fine)
+    {
+        unsigned short centrale = (inizio + fine) / 2;
+
+        this->mergeSort(inizio, centrale);
+
+        this->mergeSort(centrale + 1, fine);
+
+        this->merge(inizio, centrale, fine);
+    }
+
+}
+
 Fantacalcio::Fantacalcio() { }
 
 void Fantacalcio::aggiungiAllenatore(Persona *allenatore)
@@ -27,6 +75,8 @@ void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocato
     giocatore->eseguiOperazione(allenatore);
 
     this->giocatoriAcquistati.push_back(giocatore);
+
+    this->mergeSort(0, this->giocatoriAcquistati.size() - 1);
 
     std::string path = "./output/" + allenatore->getNome() + ".txt";
 
