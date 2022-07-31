@@ -8,10 +8,14 @@ class Persona
     protected:
         std::string nome;
         unsigned short crediti;    
-        
+
     public:
         Persona();
         Persona(const std::string, const unsigned short);
+        
+        Persona(const Persona&);
+        virtual Persona* clona() const = 0;
+
         virtual ~Persona();
 
         void getInfo(std::ostream&) const;
