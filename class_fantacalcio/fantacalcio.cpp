@@ -50,6 +50,30 @@ void Fantacalcio::mergeSort(unsigned short inizio, unsigned short fine)
 
 Fantacalcio::Fantacalcio() { }
 
+Fantacalcio::~Fantacalcio()
+{
+    for(auto i : this->giocatoriAcquistati)
+    {
+        if(i)
+        {
+            delete i;
+
+            i = nullptr;
+        }   
+
+    }
+
+    for(auto i : this->allenatori)
+    {
+        if(i)
+        {
+            delete i;
+
+            i = nullptr;
+        }
+    }
+}
+
 void Fantacalcio::aggiungiAllenatore(Persona *allenatore)
 {
     this->allenatori.push_back(allenatore);
@@ -69,12 +93,12 @@ void Fantacalcio::acquistaGiocatore(std::string nomeAllenatore, Persona *giocato
 
         return;
     }
-        
-    allenatore->eseguiOperazione(giocatore);
 
     giocatore->eseguiOperazione(allenatore);
 
-    this->giocatoriAcquistati.push_back(giocatore);
+    allenatore->eseguiOperazione(giocatore);
+
+    this->giocatoriAcquistati.push_back(giocatore->clona());
 
     this->mergeSort(0, this->giocatoriAcquistati.size() - 1);
 

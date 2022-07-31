@@ -23,6 +23,7 @@ class Fantacalcio
 
     public:
         Fantacalcio();
+        ~Fantacalcio();
         void aggiungiAllenatore(Persona *);
         void acquistaGiocatore(const std::string, Persona*);
         
