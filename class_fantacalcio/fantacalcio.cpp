@@ -52,6 +52,24 @@ void Fantacalcio::mergeSort(unsigned short inizio, unsigned short fine)
 
 }
 
+Persona* Fantacalcio::find(const std::string &nomeGiocatore) const
+{
+    unsigned short sx = 0, dx = this->giocatoriAcquistati.size(), mid;
+
+    while(sx < dx)
+    {
+        mid = (sx + dx) / 2;
+
+        if(this->giocatoriAcquistati[mid]->getNome() == nomeGiocatore) return this->giocatoriAcquistati[mid];
+
+        else if(this->giocatoriAcquistati[mid]->getNome() < nomeGiocatore) sx = mid + 1;
+
+        else dx = mid - 1;
+    }
+
+    return nullptr;
+}
+
 Fantacalcio::Fantacalcio() { }
 
 Fantacalcio::~Fantacalcio()
@@ -174,7 +192,20 @@ Persona* Fantacalcio::cerca(const Persona *giocatore) const
     return nullptr;
 }
 
-/*void Fantacalcio::esiste(const std::string &nome) const
+void Fantacalcio::esiste(std::string &nome) const
 {
+    system("cls");
 
-}*/
+    Giocatore* giocatore = dynamic_cast<Giocatore*>(this->find(nome));
+
+    if(giocatore) 
+        std::cout<<"Il giocatore E' STATO acquistato da: "
+            <<giocatore->getProprietario();
+
+    else
+        std::cout<<"Il giocatore NON E' STATO acquistato";
+
+    std::cout<<std::endl<<std::endl;
+
+    system("pause");   
+}

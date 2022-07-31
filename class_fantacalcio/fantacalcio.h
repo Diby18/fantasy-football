@@ -21,6 +21,9 @@ class Fantacalcio
     void merge(unsigned short, unsigned short, unsigned short);
     void mergeSort(unsigned short, unsigned short);
 
+    //algoritmo di ricerca
+    Persona* find(const std::string&) const;
+
     public:
         Fantacalcio();
         ~Fantacalcio();
@@ -39,9 +42,9 @@ class Fantacalcio
         Persona* cerca(const std::string&) const;
 
         //cerca giocatore 
-        Persona* cerca(const Persona* ) const;
+        Persona* cerca(const Persona*) const;
 
-        void esiste(const std::string&) const;
+        void esiste(std::string&) const;
 };
 
 
