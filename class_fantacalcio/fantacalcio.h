@@ -17,6 +17,7 @@ class Fantacalcio
     std::vector<Persona*> allenatori;
     std::vector<Persona*> giocatoriAcquistati;
 
+    //ordinare crescentemente gli acquisti
     void merge(unsigned short, unsigned short, unsigned short);
     void mergeSort(unsigned short, unsigned short);
 
@@ -26,10 +27,17 @@ class Fantacalcio
         void acquistaGiocatore(const std::string, Persona*);
         
         void stampaAllenatori() const;
+
+        //acquisti di un determinato allenatore
         void stampaAcquisti(const std::string) const;
+
+        //tutti i giocatori acquistati al momento
         void stampaAcquisti() const;
 
+        //cerca allenatore
         Persona* cerca(const std::string) const;
+
+        //cerca giocatore 
         Persona* cerca(const Persona* ) const;
 };
 
