@@ -9,6 +9,8 @@ using namespace std;
 
 inline string noAlloc() { return "Impossibile allocare memoria"; } 
 
+inline unsigned short minCrediti() { return 100; }
+
 //input su stream
 bool checkInput(istream &is)
 {
@@ -59,10 +61,23 @@ void input(Fantacalcio &fanta)
 
     do
     {
+        errore = false;
+
         cout<<"Inserire i crediti dell'asta: ";
         cin>>crediti;
 
-    } while(!checkInput(cin));
+        if(crediti < minCrediti())
+        {
+            system("cls");
+
+            cerr<<"Impossibile inserire meno di 100 crediti!"<<endl;
+
+            errore = true;
+        }
+
+        errore = !checkInput(cin) || errore;
+
+    } while(errore);
 
     system("cls");
 
@@ -196,8 +211,6 @@ int main()
     input(*fanta);
 
     esegui(*fanta);
-
-    cout<<"\n\nFine";
 
     return 0;
 }
