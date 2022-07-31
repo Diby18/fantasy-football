@@ -240,5 +240,9 @@ int main()
 
     esegui(*fanta);
 
+    delete fanta;
+
+    cout<<"\n\nFine";
+
     return 0;
 }
