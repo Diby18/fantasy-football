@@ -17,6 +17,8 @@ class Persona
         std::string getNome() const;
         unsigned short getCrediti() const;
 
+        bool operator<(const Persona&) const;
+
         virtual void eseguiOperazione(Persona*) = 0;
 
         friend std::ostream& operator<<(std::ostream&, const Persona&);

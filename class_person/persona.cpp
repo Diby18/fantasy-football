@@ -18,6 +18,11 @@ std::string Persona::getNome() const { return this->nome; }
 
 unsigned short Persona::getCrediti() const { return this->crediti; }
 
+bool Persona::operator<(const Persona &persona) const
+{
+    return this->crediti < persona.crediti;
+}
+
 //overloading <<
 std::ostream& operator<<(std::ostream &os, const Persona &persona)
 {
