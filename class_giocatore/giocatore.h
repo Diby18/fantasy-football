@@ -12,6 +12,10 @@ class Giocatore: public Persona
     public:
         Giocatore();
         Giocatore(const std::string, const unsigned short,const char);
+        
+        Giocatore(const Giocatore&);
+        Persona* clona() const;
+
         ~Giocatore();
 
         char getRuolo() const;

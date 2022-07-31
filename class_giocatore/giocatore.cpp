@@ -8,6 +8,15 @@ const unsigned short prezzo, const char ruolo): Persona(nome,prezzo)
     this->ruolo = ruolo;
 }
 
+Giocatore::Giocatore(const Giocatore &giocatore): Persona(giocatore)
+{
+    this->ruolo = giocatore.ruolo;
+
+    this->proprietario = new std::string(*giocatore.proprietario);
+}
+
+Persona* Giocatore::clona() const { return new Giocatore(*this); }
+
 Giocatore::~Giocatore()
 {
     if(this->proprietario)
