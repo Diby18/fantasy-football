@@ -31,15 +31,29 @@ bool checkInput(istream &is)
 
 void input(Fantacalcio &fanta, const unsigned short crediti)
 {
-    unsigned short numeroAllenatori;
+    short numeroAllenatori;
     string nomeAllenatore;
+    bool errore;
 
     do
     {
+        errore = false;
+
         cout<<"Inserire il numero di partecipanti: ";
         cin>>numeroAllenatori;
 
-    } while(!checkInput(cin));
+        if(numeroAllenatori <= 0)
+        {
+            system("cls");
+
+            cerr<<"ERRORE\nImpossibile inserire 0 o meno allenatori"<<endl;
+
+            errore = true;
+        }
+
+        errore = !checkInput(cin) || errore;
+
+    } while(errore);
 
     for(unsigned i = 0; i<numeroAllenatori; i++)
     {
@@ -55,7 +69,7 @@ void input(Fantacalcio &fanta, const unsigned short crediti)
 void input(Fantacalcio &fanta)
 {
     bool errore;
-    unsigned short crediti;
+    short crediti;
 
     system("cls");
 
@@ -70,7 +84,7 @@ void input(Fantacalcio &fanta)
         {
             system("cls");
 
-            cerr<<"Impossibile inserire meno di 100 crediti!"<<endl;
+            cerr<<"ERRORE\nImpossibile inserire meno di 100 crediti!"<<endl;
 
             errore = true;
         }
@@ -119,10 +133,13 @@ Giocatore* creaGiocatore()
 
 unsigned short selezioneAzione()
 {
-    unsigned short scelta;
+    short scelta;
+    bool errore;
 
     do
     {
+        errore = false;
+
         cout<<"Cosa vuoi fare?\n\n- 0 per terminare la sessione"<<
             "\n- 1 per registare un acquisto\n- 2 per stampare "
             << "gli acquisti di un allenatore\n- 3 per stampare tutti "
@@ -132,7 +149,18 @@ unsigned short selezioneAzione()
 
         cin>>scelta;
 
-    } while(!checkInput(cin));
+        if(scelta < 0 && scelta > 3)
+        {
+            system("cls");
+
+            cerr<<"Errore\nInserisci solamente i numeri indicati"<<endl;
+
+            errore = true;
+        }
+
+        errore = !checkInput || errore;
+
+    } while(errore);
 
     return scelta;
 }
@@ -182,7 +210,7 @@ void esegui(Fantacalcio &fanta)
                 {
                     system("cls");
 
-                    cerr<<"Il giocatore e' stato gia' comprato\n";
+                    cerr<<"ERRORE\nIl giocatore e' stato gia' comprato"<<endl;
                     
                     delete nuovo;
 
