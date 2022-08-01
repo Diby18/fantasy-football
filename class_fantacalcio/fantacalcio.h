@@ -45,6 +45,8 @@ class Fantacalcio
         Persona* cerca(const Persona*) const;
 
         void esiste(std::string&) const;
+
+        friend void salva(Fantacalcio &fanta);
 };
 
 
