@@ -2,6 +2,7 @@
 #include <limits>
 #include <stdexcept>
 #include <ctype.h>
+#include <fstream>
 
 #include "class_fantacalcio/fantacalcio.h"
 
@@ -250,15 +251,49 @@ void esegui(Fantacalcio &fanta)
 
 }
 
+void salva(Fantacalcio &fanta)
+{
+    ofstream file("crediti.txt");
+
+    for(auto i : fanta.allenatori)
+
+        file<<(string) *i<<endl;
+}
+
+bool carica(Fantacalcio &fanta)
+{
+    ifstream file("crediti.txt");
+    
+    if(!file.is_open() || file.peek() == ifstream::traits_type::eof()) return false;
+
+    string row, nome, crediti;
+
+    int blank;
+
+    while(getline(file,row))
+    {
+        blank = row.find(" ", 0);
+
+        nome = row.substr(0, blank);
+        crediti = row.substr(blank + 1);
+
+        fanta.aggiungiAllenatore( new Allenatore( nome, stoi(crediti) ) );
+    }
+
+    return true;
+}
+
 int main()
 {
     Fantacalcio *fanta = new Fantacalcio;
 
     if(!fanta) throw runtime_error(noAlloc());
 
-    input(*fanta);
+    if(!carica(*fanta)) input(*fanta);
 
     esegui(*fanta);
+
+    salva(*fanta);
 
     delete fanta;
 
