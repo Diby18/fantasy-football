@@ -251,6 +251,7 @@ void esegui(Fantacalcio &fanta)
 
 }
 
+//salvataggio su file dei dati
 void salva(const Fantacalcio &fanta)
 {
     ofstream file("crediti.txt");
@@ -260,6 +261,7 @@ void salva(const Fantacalcio &fanta)
         file<<(string) *i<<endl;
 }
 
+//caricamento da file dei dati
 bool carica(Fantacalcio &fanta)
 {
     ifstream file("crediti.txt");
