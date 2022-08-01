@@ -27,6 +27,11 @@ bool Persona::operator<(const Persona &persona) const
     return this->nome < persona.nome;
 }
 
+Persona::operator std::string() const
+{
+    return this->nome + " " + std::to_string(this->crediti);
+}
+
 //overloading <<
 std::ostream& operator<<(std::ostream &os, const Persona &persona)
 {

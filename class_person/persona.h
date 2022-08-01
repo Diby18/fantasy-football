@@ -23,6 +23,7 @@ class Persona
         unsigned short getCrediti() const;
 
         bool operator<(const Persona&) const;
+        virtual operator std::string () const;
 
         virtual void eseguiOperazione(Persona*) = 0;
 
