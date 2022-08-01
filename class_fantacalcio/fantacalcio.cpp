@@ -128,7 +128,7 @@ void Fantacalcio::acquistaGiocatore(const std::string &nomeAllenatore, Persona *
 
     std::ofstream squadra(path, std::ios::app);
 
-    squadra<< (std::string) *( (Giocatore*) giocatore )<<std::endl;
+    squadra<< (std::string) *giocatore<<std::endl;
 }
 
 void Fantacalcio::stampaAllenatori() const
