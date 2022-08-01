@@ -251,7 +251,7 @@ void esegui(Fantacalcio &fanta)
 
 }
 
-void salva(Fantacalcio &fanta)
+void salva(const Fantacalcio &fanta)
 {
     ofstream file("crediti.txt");
 
