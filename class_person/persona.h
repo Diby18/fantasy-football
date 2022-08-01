@@ -12,11 +12,10 @@ class Persona
     public:
         Persona();
         Persona(const std::string, const unsigned short);
-        
         Persona(const Persona&);
-        virtual Persona* clona() const = 0;
-
         virtual ~Persona();
+        
+        virtual Persona* clona() const = 0;
 
         void getInfo(std::ostream&) const;
         std::string getNome() const;

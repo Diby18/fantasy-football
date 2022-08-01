@@ -12,19 +12,18 @@ class Giocatore: public Persona
     public:
         Giocatore();
         Giocatore(const std::string, const unsigned short,const char);
-        
         Giocatore(const Giocatore&);
-        Persona* clona() const;
-
         ~Giocatore();
+        
+        Persona* clona() const;
 
         char getRuolo() const;
         const std::string& getProprietario() const;
 
-        void eseguiOperazione(Persona*);
-
         operator std::string() const;
         bool operator==(const Giocatore&) const;
+
+        void eseguiOperazione(Persona*);
 
         friend std::ostream& operator<<(std::ostream&,const Giocatore&);
         friend std::istream& operator>>(std::istream&, Giocatore&);

@@ -27,6 +27,7 @@ class Fantacalcio
     public:
         Fantacalcio();
         ~Fantacalcio();
+
         void aggiungiAllenatore(Persona *);
         void acquistaGiocatore(const std::string&, Persona*);
         
@@ -46,7 +47,7 @@ class Fantacalcio
 
         void esiste(std::string&) const;
 
-        friend void salva(Fantacalcio &fanta);
+        friend void salva(const Fantacalcio &fanta);
 };
 
 

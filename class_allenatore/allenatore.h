@@ -10,14 +10,15 @@ class Allenatore: public Persona
 
     public:
         Allenatore(const std::string, const unsigned short);
+        ~Allenatore();
         
         Persona* clona() const;
 
-        ~Allenatore();
-        void eseguiOperazione(Persona*); //acquisto di un giocatore
+        unsigned short numeroAcquistati() const;
 
         const Persona* const operator[](const unsigned) const;
-        unsigned short numeroAcquistati() const;
+
+        void eseguiOperazione(Persona*); //acquisto di un giocatore
 
         friend std::ostream& operator<<(std::ostream&, const Allenatore&);
 };
