@@ -1,11 +1,13 @@
 #include "giocatore.h"
 
-Giocatore::Giocatore(): Persona() { }
+Giocatore::Giocatore(): Persona(), proprietario(nullptr) { }
 
 Giocatore::Giocatore(const std::string nome, 
 const unsigned short prezzo, const char ruolo): Persona(nome,prezzo)
 {
     this->ruolo = ruolo;
+
+    this->proprietario = nullptr;
 }
 
 Giocatore::Giocatore(const Giocatore &giocatore): Persona(giocatore)
