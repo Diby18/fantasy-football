@@ -165,7 +165,7 @@ unsigned short selezioneAzione()
             errore = true;
         }
 
-        errore = !checkInput || errore;
+        errore = !checkInput(cin) || errore;
 
     } while(errore);
 
