@@ -22,8 +22,8 @@ Allenatore::~Allenatore()
 void Allenatore::eseguiOperazione(Persona *giocatore)
 {
     this->listaGiocatori.push_back(giocatore);
-    
-    this->crediti -= giocatore->getCrediti(); 
+
+    this->crediti -= giocatore->getCrediti();
 }
 
 const Persona* const Allenatore::operator[](const unsigned index) const
