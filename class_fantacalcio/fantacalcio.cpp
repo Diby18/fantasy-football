@@ -54,7 +54,7 @@ void Fantacalcio::mergeSort(unsigned short inizio, unsigned short fine)
 
 Persona* Fantacalcio::find(const std::string &nomeGiocatore) const
 {
-    unsigned short sx = 0, dx = this->giocatoriAcquistati.size(), mid;
+    short sx = 0, dx = this->giocatoriAcquistati.size(), mid;
 
     while(sx < dx)
     {
@@ -196,7 +196,7 @@ void Fantacalcio::esiste(std::string &nome) const
 {
     system("cls");
 
-    Giocatore* giocatore = dynamic_cast<Giocatore*>(this->find(nome));
+    Giocatore *giocatore = dynamic_cast<Giocatore*>(this->find(nome));
 
     if(giocatore) 
         std::cout<<"Il giocatore E' STATO acquistato da: "
