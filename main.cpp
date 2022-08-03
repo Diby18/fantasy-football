@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <ctype.h>
 #include <fstream>
+#include <vector>
+#include <sstream>
 
 #include "class_fantacalcio/fantacalcio.h"
 
@@ -15,6 +17,29 @@ inline unsigned short minCrediti() { return 100; }
 void toUpperStr(string &str)
 {
     for(auto &i : str) i = toupper(i);
+}
+
+vector<string>* splitStr(const string &str)
+{
+    vector<string> *vec = new vector<string>;
+
+    if(!vec) throw runtime_error(noAlloc());
+
+    int pos = 0, blank;
+
+    system("pause");
+
+    do
+    {
+        blank = str.find(' ', pos);
+
+        vec->push_back( str.substr(pos, blank - pos) );
+
+        pos = blank + 1;
+
+    } while(pos-1 != string::npos);
+
+    return vec;
 }
 
 //input su stream
@@ -33,6 +58,26 @@ bool checkInput(istream &is)
     }
 
     return true;
+}
+
+bool checkInput(const string &str)
+{
+    for(auto i : str)
+
+        if(!isdigit(i)) return false;
+
+    return true;
+}
+
+bool checkInput(const vector<string> &vec)
+{
+    unsigned count = 0;
+
+    const string ruoli = "PDCA";
+
+    if(ruoli.find(vec[0]) == string::npos) return false;
+    
+    return checkInput(vec[vec.size() - 1]);
 }
 
 void input(Fantacalcio &fanta, const unsigned short crediti)
@@ -106,33 +151,62 @@ void input(Fantacalcio &fanta)
     system("cls");
 }
 
-Giocatore* creaGiocatore()
+void caricaDatiGiocatore(const vector<string> &info, Giocatore *giocatore)
+{
+    giocatore->ruolo = info[0].at(0);
+
+    for(unsigned i = 1; i<info.size(); i++)
+    {
+        if(!checkInput(info[i])) giocatore->nome += info[i] + " ";
+
+        else giocatore->crediti = stoi(info[i]);
+    }
+}
+
+Persona* creaGiocatore()
 {
     Giocatore *nuovo = new Giocatore;
+
     bool errore;
-    string ruoliPossibili = "PDCA";
-   
+    string ruoliPossibili = "PDCA", tmp;
+    vector<string> *info;
+
     do
     {
         errore = false;
 
         cout<<"Inserire i dati del giocatore nel seguente formato:"
             <<"ruolo nome prezzo\n"<<"Es: A Immobile 100\n\nInserisci: ";
-    
-        cin>>*nuovo;
 
-        errore = !checkInput(cin);
+        cin.clear();
+        cin.sync();
 
-        if(ruoliPossibili.find(nuovo->getRuolo()) == string::npos)
+        getline(cin, tmp);
+
+        toUpperStr(tmp);
+
+        info = splitStr(tmp);
+
+        if(!checkInput(*info))
         {
             system("cls");
 
+            cerr<<"ERRORE!!\nInserire correttamente i dati"<<endl<<endl;
+
             errore = true;
 
-            cerr<<"ERRORE!!\nI ruoli possibili sono: P D C A\n";
+            delete info;
         }
 
     } while(errore);
+
+    caricaDatiGiocatore(*info, nuovo);
+
+    if(info)
+    {
+        delete info;
+        info = nullptr;
+    }
 
     return nuovo;
 }
@@ -209,7 +283,7 @@ void esegui(Fantacalcio &fanta)
 
             if(azione == 1)
             {
-                Giocatore *nuovo = creaGiocatore();
+                Persona *nuovo = creaGiocatore();
                 
                 if(!fanta.cerca(nuovo)) fanta.acquistaGiocatore(allenatore, nuovo);
 
