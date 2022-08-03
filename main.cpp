@@ -27,8 +27,6 @@ vector<string>* splitStr(const string &str)
 
     int pos = 0, blank;
 
-    system("pause");
-
     do
     {
         blank = str.find(' ', pos);
@@ -157,7 +155,12 @@ void caricaDatiGiocatore(const vector<string> &info, Giocatore *giocatore)
 
     for(unsigned i = 1; i<info.size(); i++)
     {
-        if(!checkInput(info[i])) giocatore->nome += info[i] + " ";
+        if(!checkInput(info[i]))
+        {
+            giocatore->nome += info[i];
+
+            if(!checkInput(info[i+1])) giocatore->nome += " ";
+        }
 
         else giocatore->crediti = stoi(info[i]);
     }
