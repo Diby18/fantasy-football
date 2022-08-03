@@ -54,17 +54,17 @@ void Fantacalcio::mergeSort(unsigned short inizio, unsigned short fine)
 
 Persona* Fantacalcio::find(const std::string &nomeGiocatore) const
 {
-    short sx = 0, dx = this->giocatoriAcquistati.size(), mid;
+    short sx = 0, dx = this->giocatoriAcquistati.size() - 1, mid;
 
-    while(sx < dx)
+    while(sx <= dx)
     {
         mid = (sx + dx) / 2;
 
         if(this->giocatoriAcquistati[mid]->getNome() == nomeGiocatore) return this->giocatoriAcquistati[mid];
 
-        else if(this->giocatoriAcquistati[mid]->getNome() < nomeGiocatore) sx = mid + 1;
+        else if(nomeGiocatore < this->giocatoriAcquistati[mid]->getNome())  dx = mid - 1;
 
-        else dx = mid - 1;
+        else sx = mid + 1;
     }
 
     return nullptr;
