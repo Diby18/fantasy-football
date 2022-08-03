@@ -294,7 +294,7 @@ void esegui(Fantacalcio &fanta)
                 {
                     system("cls");
 
-                    cerr<<"ERRORE\nIl giocatore e' stato gia' comprato"<<endl;
+                    cerr<<"ERRORE\nIl giocatore e' stato gia' comprato"<<endl<<endl;
                     
                     delete nuovo;
 
@@ -314,7 +314,11 @@ void esegui(Fantacalcio &fanta)
             string nome;
 
             cout<<"Inserire il giocatore da cercare: ";
-            cin>>nome;
+            
+            cin.clear();
+            cin.sync();
+
+            getline(cin, nome);
 
             toUpperStr(nome);
             
