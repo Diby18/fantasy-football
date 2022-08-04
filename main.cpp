@@ -342,12 +342,70 @@ void salva(const Fantacalcio &fanta)
         file<<(string) *i<<endl;
 }
 
+bool eliminazioneSalvataggi()
+{
+    char scelta = '\0';
+    bool errore;    
+    
+    do
+    {
+        errore = false;
+
+        if(scelta == '\0') 
+        {
+            cout<<"Sono presenti dati in memoria, caricarli?\nDigitare S per si oppure N per no: ";
+            
+            cin>>scelta;
+
+            scelta = toupper(scelta);
+        } 
+            
+        if(scelta != 'S' && scelta != 'N')
+        {
+            system("cls");
+
+            cerr<<"ERRORE\nE' possibile inserire solo S o N"<<endl<<endl;
+
+            errore = true;
+
+            scelta = '\0';
+        }
+
+        if(scelta == 'N')
+        {
+            system("cls");
+
+            cout<<"Sei veramente sicuro di eliminare i dati? Una volta fatto non sara' possibile"
+                <<" recuperarli\nDigitare S per si oppure N per no: ";
+            
+            cin>>scelta;
+
+            scelta = toupper(scelta);
+
+            if(scelta != 'S' && scelta != 'N') errore = true;
+
+            else if(scelta == 'S') return true;
+
+            else scelta = '\0';
+        }
+
+    } while(errore || scelta == '\0');
+
+    return false;
+}
+
 //caricamento da file dei dati
 bool carica(Fantacalcio &fanta)
 {
+    system("cls");
+
     ifstream file("crediti.txt");
     
     if(!file.is_open() || file.peek() == ifstream::traits_type::eof()) return false;
+
+    if(eliminazioneSalvataggi()) return false;
+
+    system("cls");
 
     string row, nome, crediti;
 
@@ -375,6 +433,53 @@ int main()
     if(!carica(*fanta)) input(*fanta);
 
     esegui(*fanta);
+
+    /*for(int i = 0; i<150; i++)
+    {
+        string a = to_string(i);
+
+        if(i < 25) fanta->acquistaGiocatore("elia", new Giocatore("giocElia" + a,5,'P'));
+
+        else if(i < 50) fanta->acquistaGiocatore("mattia", new Giocatore("giocMattia" + a,5,'P'));
+
+        else if(i < 75) fanta->acquistaGiocatore("flavio", new Giocatore("giocFlavio" + a,5,'P'));
+
+        else if(i < 100) fanta->acquistaGiocatore("gaetano", new Giocatore("giocGaetano" + a,5,'P'));
+
+        else if(i < 125) fanta->acquistaGiocatore("alessio", new Giocatore("giocAlessio" + a,5,'P'));
+
+        else fanta->acquistaGiocatore("pitta", new Giocatore("giocPitta",5,'P'));
+    }
+
+    fanta->stampaAllenatori();
+
+    system("pause");
+
+    system("cls");
+
+    fanta->stampaAcquisti();
+
+    system("pause");
+
+    system("cls");
+
+    fanta->stampaAcquisti("elia");
+
+    system("pause");
+
+    system("cls");
+
+    string b = "giocElia0";
+
+    fanta->esiste(b);
+
+    b = "giocElia24";
+
+    cout<<endl<<endl;
+
+    fanta->esiste(b);
+
+    system("pause");*/
 
     salva(*fanta);
 
