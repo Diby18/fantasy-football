@@ -10,15 +10,19 @@
 
 using namespace std;
 
+//messaggio di errore in caso di mancata allocazione
 inline string noAlloc() { return "Impossibile allocare memoria"; } 
 
+//numero minimo di crediti per l'asta
 inline unsigned short minCrediti() { return 100; }
 
+//converte i caratteri di una stringa in caratteri maiuscoli 
 void toUpperStr(string &str)
 {
     for(auto &i : str) i = toupper(i);
 }
 
+//estrae tutte le informazioni contenute nella stringa
 vector<string>* splitStr(const string &str)
 {
     vector<string> *vec = new vector<string>;
@@ -40,7 +44,7 @@ vector<string>* splitStr(const string &str)
     return vec;
 }
 
-//input su stream
+//controllo dell'input stream
 bool checkInput(istream &is)
 {
     if(cin.fail())
@@ -58,6 +62,7 @@ bool checkInput(istream &is)
     return true;
 }
 
+//verifica la presenza di caratteri non numerici
 bool checkInput(const string &str)
 {
     for(auto i : str)
@@ -67,6 +72,7 @@ bool checkInput(const string &str)
     return true;
 }
 
+//verifica che le informazioni contenute nella struttura siano nel formato corretto
 bool checkInput(const vector<string> &vec)
 {
     unsigned count = 0;
@@ -78,6 +84,7 @@ bool checkInput(const vector<string> &vec)
     return checkInput(vec[vec.size() - 1]);
 }
 
+//input allenatori
 void input(Fantacalcio &fanta, const unsigned short crediti)
 {
     short numeroAllenatori;
@@ -115,6 +122,7 @@ void input(Fantacalcio &fanta, const unsigned short crediti)
     }
 }
 
+//input dati asta
 void input(Fantacalcio &fanta)
 {
     bool errore;
@@ -149,6 +157,7 @@ void input(Fantacalcio &fanta)
     system("cls");
 }
 
+//caricare i dati contenuti nella struttura nell'oggetto giocatore
 void caricaDatiGiocatore(const vector<string> &info, Giocatore *giocatore)
 {
     giocatore->ruolo = info[0].at(0);
@@ -166,6 +175,7 @@ void caricaDatiGiocatore(const vector<string> &info, Giocatore *giocatore)
     }
 }
 
+//crea un nuovo giocatore
 Persona* creaGiocatore()
 {
     Giocatore *nuovo = new Giocatore;
@@ -214,6 +224,7 @@ Persona* creaGiocatore()
     return nuovo;
 }
 
+//menu principale
 unsigned short selezioneAzione()
 {
     short scelta;
@@ -249,6 +260,7 @@ unsigned short selezioneAzione()
     return scelta;
 }
 
+//esecuzione dell'azione scelta dall'utente
 void esegui(Fantacalcio &fanta)
 {
     unsigned short azione;
@@ -342,6 +354,7 @@ void salva(const Fantacalcio &fanta)
         file<<(string) *i<<endl;
 }
 
+//eliminazione dei dati salvati
 bool eliminazioneSalvataggi()
 {
     char scelta = '\0';
@@ -353,7 +366,7 @@ bool eliminazioneSalvataggi()
 
         if(scelta == '\0') 
         {
-            cout<<"Sono presenti dati in memoria, caricarli?\nDigitare S per si oppure N per no: ";
+            cout<<"Sono presenti dati in memoria, caricarli?\n\nDigitare S per si oppure N per no: ";
             
             cin>>scelta;
 
@@ -375,8 +388,9 @@ bool eliminazioneSalvataggi()
         {
             system("cls");
 
-            cout<<"Sei veramente sicuro di eliminare i dati? Una volta fatto non sara' possibile"
-                <<" recuperarli\nDigitare S per si oppure N per no: ";
+            cout<<"Sei veramente sicuro di eliminare i dati?" 
+                <<"Una volta fatto non sara' possibile"
+                <<" recuperarli\n\nDigitare S per si oppure N per no: ";
             
             cin>>scelta;
 
@@ -433,53 +447,6 @@ int main()
     if(!carica(*fanta)) input(*fanta);
 
     esegui(*fanta);
-
-    /*for(int i = 0; i<150; i++)
-    {
-        string a = to_string(i);
-
-        if(i < 25) fanta->acquistaGiocatore("elia", new Giocatore("giocElia" + a,5,'P'));
-
-        else if(i < 50) fanta->acquistaGiocatore("mattia", new Giocatore("giocMattia" + a,5,'P'));
-
-        else if(i < 75) fanta->acquistaGiocatore("flavio", new Giocatore("giocFlavio" + a,5,'P'));
-
-        else if(i < 100) fanta->acquistaGiocatore("gaetano", new Giocatore("giocGaetano" + a,5,'P'));
-
-        else if(i < 125) fanta->acquistaGiocatore("alessio", new Giocatore("giocAlessio" + a,5,'P'));
-
-        else fanta->acquistaGiocatore("pitta", new Giocatore("giocPitta",5,'P'));
-    }
-
-    fanta->stampaAllenatori();
-
-    system("pause");
-
-    system("cls");
-
-    fanta->stampaAcquisti();
-
-    system("pause");
-
-    system("cls");
-
-    fanta->stampaAcquisti("elia");
-
-    system("pause");
-
-    system("cls");
-
-    string b = "giocElia0";
-
-    fanta->esiste(b);
-
-    b = "giocElia24";
-
-    cout<<endl<<endl;
-
-    fanta->esiste(b);
-
-    system("pause");*/
 
     salva(*fanta);
 
