@@ -27,7 +27,6 @@ class Giocatore: public Persona
         void eseguiOperazione(Persona*);
 
         friend std::ostream& operator<<(std::ostream&,const Giocatore&);
-        friend std::istream& operator>>(std::istream&, Giocatore&);
         friend void caricaDatiGiocatore(const std::vector<std::string>&, Giocatore*);
 };
 

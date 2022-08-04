@@ -58,14 +58,3 @@ std::ostream& operator<<(std::ostream &os, const Giocatore &giocatore)
 
     return os;
 }
-
-std::istream& operator>>(std::istream &is, Giocatore &giocatore)
-{
-    is>>giocatore.ruolo>>giocatore.nome>>giocatore.crediti;
-    
-    giocatore.ruolo = toupper(giocatore.ruolo);
-
-    for(auto &i: giocatore.nome) i = toupper(i);
-
-    return is;
-}
