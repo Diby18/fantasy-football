@@ -81,7 +81,7 @@ bool checkInput(const vector<string> &vec)
 
     if(ruoli.find(vec[0]) == string::npos) return false;
     
-    return checkInput(vec[vec.size() - 1]);
+    return ( checkInput(vec[vec.size() - 1]) && !(vec[vec.size() - 1] == "0") );
 }
 
 //input allenatori
@@ -188,13 +188,16 @@ Persona* creaGiocatore()
     {
         errore = false;
 
-        cout<<"Inserire i dati del giocatore nel seguente formato:"
+        cout<<"Per annullare l'operazione digitare 0\n\n"
+            <<"Altrimenti inserire i dati del giocatore nel seguente formato: "
             <<"ruolo nome prezzo\n"<<"Es: A Immobile 100\n\nInserisci: ";
 
         cin.clear();
         cin.sync();
 
         getline(cin, tmp);
+
+        if(tmp == "0") return nullptr;
 
         toUpperStr(tmp);
 
@@ -300,9 +303,9 @@ void esegui(Fantacalcio &fanta)
             {
                 Persona *nuovo = creaGiocatore();
                 
-                if(!fanta.cerca(nuovo)) fanta.acquistaGiocatore(allenatore, nuovo);
+                if(nuovo && !fanta.cerca(nuovo)) fanta.acquistaGiocatore(allenatore, nuovo);
 
-                else
+                else if(nuovo)
                 {
                     system("cls");
 
@@ -366,7 +369,8 @@ bool eliminazioneSalvataggi()
 
         if(scelta == '\0') 
         {
-            cout<<"Sono presenti dati in memoria, caricarli?\n\nDigitare S per si oppure N per no: ";
+            cout<<"Sono presenti dati in memoria, caricarli?\n\n"
+                <<"Digitare S per si oppure N per no: ";
             
             cin>>scelta;
 
@@ -389,7 +393,7 @@ bool eliminazioneSalvataggi()
             system("cls");
 
             cout<<"Sei veramente sicuro di eliminare i dati?" 
-                <<"Una volta fatto non sara' possibile"
+                <<" Una volta fatto non sara' possibile"
                 <<" recuperarli\n\nDigitare S per si oppure N per no: ";
             
             cin>>scelta;
