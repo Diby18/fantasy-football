@@ -45,6 +45,7 @@ class Fantacalcio
         //cerca giocatore 
         Persona* cerca(const Persona*) const;
 
+        //verifica se il giocatore e' stato acquistato
         void esiste(std::string&) const;
 
         friend void salva(const Fantacalcio &fanta);
